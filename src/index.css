@@ -12,7 +12,11 @@ body {
 }
 
 main {
-  background-color: #4e6580;
+  background-image: url('./images/battleship.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 10rem;
 }
 
 section {
@@ -31,11 +35,11 @@ table {
 }
 
 td {
-  background-color: rgb(141, 108, 64);
+  background-color: rgb(70, 69, 119);
   padding: 1rem;
   border-right: solid black 10px;
   border-bottom: solid black 10px;
-  border-top: solid rgb(124, 110, 110) 10px;
+  border-top: solid rgb(67, 31, 167) 10px;
   border-left: solid rgb(126, 109, 109) 10px;
 }
 

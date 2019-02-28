@@ -32,8 +32,20 @@ class App extends Component {
       })
   }
 
-  checkCell = () => {
-    console.log('cell was left clicked')
+  checkCell = (x, y) => {
+    axios
+      .post(
+        `https://minesweeper-api.herokuapp.com/games/{
+            this.state.game.id
+          }/check`,
+        { x: y, y: x }
+      )
+      .then(resp => {
+        this.setState({
+          game: resp.data.board
+          // gameId: resp.data.id
+        })
+      })
   }
 
   flagCell = event => {
@@ -45,7 +57,9 @@ class App extends Component {
     return (
       <main>
         <section>
-          <h1>💣 Fart Bombs! 💣</h1>
+          <h1>
+            <span role="img">🇩🇴</span> Fart Bombs! <span role="img">🇭🇹</span>
+          </h1>
           <select>
             <option>Beginner</option>
             <option onChange={this.setDifficulty}>Intermediate</option>
@@ -56,13 +70,13 @@ class App extends Component {
         <section className="game_body">
           <table>
             <tbody>
-              {this.state.game.map(row => {
+              {this.state.game.map((row, y) => {
                 return (
                   <tr>
-                    {row.map(col => {
+                    {row.map((col, x) => {
                       return (
                         <td
-                          onClick={this.checkCell}
+                          onClick={() => this.checkCell(x, y)}
                           onContextMenu={this.flagCell}
                         >
                           {col}
